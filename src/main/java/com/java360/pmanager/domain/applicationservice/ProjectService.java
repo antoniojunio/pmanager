@@ -20,7 +20,7 @@ public class ProjectService {
         Project project = Project
                 .builder()
                 .name(saveProjectData.getName())
-                .description(saveProjectData.getDescritpion())
+                .description(saveProjectData.getDescription())
                 .initialDate(saveProjectData.getInitialDate())
                 .finalDate(saveProjectData.getFinalDate())
                 .status(ProjectStatus.PENDING)
