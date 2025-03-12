@@ -17,16 +17,15 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = RequestException.class)
     public ResponseEntity<Object> handleRequestException(RequestException ex, WebRequest request) {
-       return handleException(ex,ex.getErrorCode(),ex.getMessage(), BAD_REQUEST,request);
+        return buildErrorResponse(ex, ex.getErrorCode(), ex.getMessage(), BAD_REQUEST, request);
     }
 
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<Object> handleGenericException(Exception ex, WebRequest request) {
-        return handleException(ex, null, ex.getMessage(), INTERNAL_SERVER_ERROR, request);
+        return buildErrorResponse(ex, null, ex.getMessage(), INTERNAL_SERVER_ERROR, request);
     }
 
-    @ExceptionHandler(value = Exception.class)
-    private ResponseEntity<Object> handleException(
+    private ResponseEntity<Object> buildErrorResponse(
             Exception ex,
             String errorCode,
             String message,
